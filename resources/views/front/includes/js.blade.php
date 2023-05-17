@@ -10,4 +10,6 @@
 <script src="{{asset('/')}}front/assets/js/plugins/nice_select/jquery.nice-select.min.js"></script>
 <script src="{{asset('/')}}front/assets/js/plugins/scroll/jquery.mCustomScrollbar.js"></script>
 <script src="{{asset('/')}}front/assets/js/custom.js"></script>
+<script src="{{asset('/')}}front/assets/js/voice.js"></script>
+
 

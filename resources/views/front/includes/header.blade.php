@@ -5,7 +5,7 @@
                 <div class="col-lg-6">
                     <form action="{{ route('search') }}" method="GET" id="search-form">
                         <input type="text"  name="search" value="{{Request::get('search')}}" class="form-control" placeholder="Search for Song, Artists, Playlists and More...">
-                        <button type="submit"><i class="fa fa-search" style=""></i></button>
+                        <button type="submit"><i class="fa fa-microphone" style=""></i></button>
                     </form>
                     <div id="search-results">
 

@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('artists') }}" title="Artists">
+                    <a href="{{ route('artist') }}" title="Artists">
                                 <span class="nav_icon">
                                     <span class="icon icon_artists"></span>
                                 </span>
@@ -35,7 +35,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('albums') }}" title="Albums">
+                    <a href="{{ route('album') }}" title="Albums">
                                 <span class="nav_icon">
                                     <span class="icon icon_albums"></span>
                                 </span>

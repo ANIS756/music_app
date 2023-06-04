@@ -25,7 +25,7 @@ class HomeController extends Controller
     {
         return view('front.stations.index');
     }
-    public function music()
+    public function musics()
     {
         return view('front.music.index');
     }
@@ -49,9 +49,28 @@ class HomeController extends Controller
             return  view('front.home.search', compact('searchMusic'));
         }
         else{
-            return redirect()->back()->with('message','empty search');
+            return redirect()->back()->with('success','empty search');
         }
     }
+
+
+
+//    public function handleHomeCommand(){
+//
+//        return view('front.home.index',[
+//            'musics' => Music::all()
+//        ]);
+//
+//    }
+//
+//    public function handleArtistCommand(){
+//
+//        return view('front.artists.index');
+//
+//    }
+
+
+
 
 //    public function fetchSongData(Request $request)
 //    {

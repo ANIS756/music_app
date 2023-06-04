@@ -52,15 +52,15 @@ class SearchController extends Controller
     }
 
 
-//    public function fetchSongData()
-//    {
-//        // Fetch the song data from the database
-//        $songs = Music::all();
-//
-//        // Return the song data as a JSON response
-//        return response()->json($songs);
-//    }
-//
+    public function fetchSongData()
+    {
+        // Fetch the song data from the database
+        $songs = Music::all();
+
+        // Return the song data as a JSON response
+        return response()->json($songs);
+    }
+
 
 
 }

@@ -1,108 +1,106 @@
-
 const searchForm = document.querySelector("#search-form");
-const searchFormInput = searchForm.querySelector("input"); // <=> document.querySelector("#search-form input");
+const searchFormInput = searchForm.querySelector("input");
 const info = document.querySelector(".info");
 
-// The speech recognition interface lives on the browser’s window object
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; // if none exists -> undefined
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-if(SpeechRecognition) {
+if (SpeechRecognition) {
     console.log("Your Browser supports speech Recognition");
 
-    const recognition = new SpeechRecognition();
+    let recognition = new SpeechRecognition();
     recognition.continuous = true;
-    // recognition.lang = "en-US";
-
-
-    recognition.start();
-
-    // (transcript.toLowerCase().trim()==="start recording")
-    //   recognition.start();
-
-
+    recognition.lang = "en-US";
+    let isRecognitionActive = true;
 
     searchForm.insertAdjacentHTML("beforeend", '<button type="button"><i class="fas fa-microphone"></i></button>');
     searchFormInput.style.paddingRight = "50px";
-//////////////////////////////////////////
-    // const micBtn = searchForm.querySelector("button");
-    // const micIcon = micBtn.firstElementChild;
 
-    // micBtn.addEventListener("click", micBtnClick);
-    // function micBtnClick() {
-    //   if(micIcon.classList.contains("fa-microphone")) { // Start Voice Recognition
-    //     recognition.start(); // First time you have to allow access to mic!
-    //   }
-    //   else {
-    //     recognition.stop();
-    //   }
-    // }
+    recognition.addEventListener("result", resultOfSpeechRecognition);
 
-    // recognition.addEventListener("start", startSpeechRecognition); // <=> recognition.onstart = function() {...}
-    // function startSpeechRecognition() {
-    //   micIcon.classList.remove("fa-microphone");
-    //   micIcon.classList.add("fa-microphone-slash");
-    //   searchFormInput.focus();
-    //   console.log("Voice activated, SPEAK");
-    // }
-
-    // recognition.addEventListener("end", endSpeechRecognition); // <=> recognition.onend = function() {...}
-    // function endSpeechRecognition() {
-    //   micIcon.classList.remove("fa-microphone-slash");
-    //   micIcon.classList.add("fa-microphone");
-    //   searchFormInput.focus();
-    //   console.log("Speech recognition service disconnected");
-    // }
-///////////////////////////////////////////////////////////
-
-
-    recognition.addEventListener("result", resultOfSpeechRecognition); // <=> recognition.onresult = function(event) {...} - Fires when you stop talking
     function resultOfSpeechRecognition(event) {
         const currentResultIndex = event.resultIndex;
         const transcript = event.results[currentResultIndex][0].transcript;
 
-
-        if(transcript.toLowerCase().trim()==="stop recording") {
+        if (transcript.toLowerCase().trim() === "stop recording") {
             recognition.stop();
+            isRecognitionActive = false;
+            console.log("Recognition stopped");
         }
-
-            // else if(transcript.toLowerCase().trim()==="start recording") {
-            //         recognition.start();
-        //   }
-
-
-        else if(!searchFormInput.value) {
+        else if (!searchFormInput.value) {
             searchFormInput.value = transcript;
         }
 
-
         else {
-            if(transcript.toLowerCase().trim()==="go") {
+            if (transcript.toLowerCase().trim() === "go") {
                 searchForm.submit();
+            } else if (transcript.toLowerCase().trim() === "reset input") {
+                searchFormInput.value = "";
+            }
+            else if (transcript.toLowerCase().trim() === "discover") {
+                window.location.href = homeCommandUrl;
+            }
+            else if (transcript.toLowerCase().trim() === "artist") {
+                window.location.href = artistCommadUrl;
+            }
+            else if (transcript.toLowerCase().trim() === "album") {
+                window.location.href = albumCommadUrl;
+            }
+            else if (transcript.toLowerCase().trim() === "music") {
+                window.location.href = anisCommandUrl;
             }
 
-
-            else if(transcript.toLowerCase().trim()==="reset input") {
-                searchFormInput.value = "";
+            else if (transcript.toLowerCase().trim().startsWith("play song")) {
+                const songName = transcript.toLowerCase().trim().replace("play song", "").trim();
+                playSongWithVoiceCommand(songName);
             }
 
             else {
                 searchFormInput.value = transcript;
             }
         }
-        // searchFormInput.value = transcript;
-        // searchFormInput.focus();
-        // setTimeout(() => {
-        //   searchForm.submit();
-        // }, 500);
     }
 
-    // info.textContent = 'Voice Commands: "stop recording", "reset input", "go"';
+// playSongWithVoiceCommand function
+    function playSongWithVoiceCommand(songName) {
+        const songList = document.querySelectorAll('.songslist_number');
+        for (let i = 0; i < songList.length; i++) {
+            const songTitle = songList[i].querySelector('.songslist_sn').textContent.toLowerCase();
+            if (songTitle.includes(songName)) {
+                const playButton = songList[i].querySelector('.songslist_play img');
+                if (playButton) {
+                    playButton.click();
+                    console.log('Play button clicked!');
+                    return; // Exit the function once the song is played
+                }
+            }
+        }
+        console.log('Song not found.');
+    }
 
-}
 
 
 
-else {
+    function toggleRecognition() {
+        if (isRecognitionActive) {
+            recognition.stop();
+            isRecognitionActive = false;
+            console.log("Recognition paused");
+        } else {
+            recognition.start();
+            isRecognitionActive = true;
+            console.log("Recognition resumed");
+        }
+    }
+
+
+    recognition.addEventListener("end", () => {
+        if (isRecognitionActive) {
+            recognition.start();
+            console.log("Recognition restarted");
+        }
+    });
+
+    recognition.start();
+} else {
     console.log("Your Browser does not support speech Recognition");
-    // info.textContent = "Your Browser does not support Speech Recognition";
 }

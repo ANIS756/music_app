@@ -6,5 +6,8 @@
 <link rel="stylesheet" type="text/css" href="{{asset('/')}}front/assets/js/plugins/player/volume.css">
 <link rel="stylesheet" type="text/css" href="{{asset('/')}}front/assets/js/plugins/scroll/jquery.mCustomScrollbar.css">
 <link rel="stylesheet" type="text/css" href="{{asset('/')}}front/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="{{asset('/')}}front/assets/audio-css/style.css">
 <!-- Favicon Link -->
 <link rel="shortcut icon" type="image/png" href="{{asset('/')}}front/assets/images/favicon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+

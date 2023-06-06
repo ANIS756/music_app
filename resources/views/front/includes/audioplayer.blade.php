@@ -2,11 +2,6 @@
     <div class="ms_player_close">
         <i class="fa fa-angle-down" aria-hidden="true"></i>
     </div>
-    <div class="player_mid">
-        <div class="audio-player">
-            <div id="jquery_jplayer_1" class="jp-jplayer"></div>
-            <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
-
                 <!----Player---->
                 <div class="jp-type-playlist">
                     <div class="jp-gui jp-interface flex-wrap">
@@ -55,8 +50,5 @@
                 </div>
 
                 <!----end Player---->
-            </div>
-        </div>
-    </div>
     <!--main div-->
 </div>

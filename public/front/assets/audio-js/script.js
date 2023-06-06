@@ -6,7 +6,8 @@ const progressBar = progressArea.querySelector(".progress-bar");
 const songNameElement = wrapper.querySelector("#song-name");
 const songArtistElement = wrapper.querySelector("#song-artist");
 const songImageElement = wrapper.querySelector("#song-image");
-
+const currentTimeElement = wrapper.querySelector(".current-time");
+const durationElement = wrapper.querySelector(".max-duration");
 let isMusicPaused = true;
 
 function playMusic() {
@@ -20,8 +21,10 @@ function pauseMusic() {
     isMusicPaused = true;
     wrapper.classList.remove("paused");
     playPauseBtn.querySelector("i").innerText = "play_arrow";
+    playPauseBtn.click(); // Trigger the click event to pause the music
     mainAudio.pause();
 }
+
 
 playPauseBtn.addEventListener("click", () => {
     const isMusicPlay = wrapper.classList.contains("paused");
@@ -33,6 +36,7 @@ mainAudio.addEventListener("timeupdate", (e) => {
     const duration = mainAudio.duration;
     const progressWidth = (currentTime / duration) * 100;
     progressBar.style.width = `${progressWidth}%`;
+    updateTimer(currentTime, duration); // Update the song timer
 });
 
 progressArea.addEventListener("click", (e) => {
@@ -42,6 +46,25 @@ progressArea.addEventListener("click", (e) => {
 
     mainAudio.currentTime = (clickedOffsetX / progressWidth) * duration;
 });
+
+function updateTimer(currentTime, duration) {
+    let currentMinutes = Math.floor(currentTime / 60);
+    let currentSeconds = Math.floor(currentTime % 60);
+    let durationMinutes = Math.floor(duration / 60);
+    let durationSeconds = Math.floor(duration % 60);
+
+    if (currentSeconds < 10) {
+        currentSeconds = `0${currentSeconds}`;
+    }
+    if (durationSeconds < 10) {
+        durationSeconds = `0${durationSeconds}`;
+    }
+
+    const timer = `${currentMinutes}:${currentSeconds} / ${durationMinutes}:${durationSeconds}`;
+
+    currentTimeElement.textContent = `${currentMinutes}:${currentSeconds}`;
+    durationElement.textContent = `${durationMinutes}:${durationSeconds}`;
+}
 
 
 function playSong(audioFile, name, artist, image) {
@@ -59,5 +82,6 @@ function playSong(audioFile, name, artist, image) {
         playMusic();
     });
 }
+
 
 

@@ -41,6 +41,4 @@ Route::middleware([
     Route::get('/fetch-song-data', [SearchController::class,'fetchSongData'])->name('fetchsongdata');
 
 
-
-
 });

@@ -15,5 +15,6 @@
 
 <script src="{{asset('/')}}front/assets/audio-js/music-list.js"></script>
 <script src="{{asset('/')}}front/assets/audio-js/script.js"></script>
+<script src="{{asset('/')}}front/assets/speech-synthesis/speech.js"></script>
 
 

@@ -21,7 +21,7 @@
     @include('front.includes.css')
 </head>
 
-<body>
+<body id="">
 <!----loader Start---->
 <div class="ms_loader">
     <div class="wrap">

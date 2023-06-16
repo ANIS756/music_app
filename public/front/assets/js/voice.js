@@ -48,9 +48,7 @@ if (SpeechRecognition) {
             else if (transcript.toLowerCase().trim() === "music") {
                 window.location.href = anisCommandUrl;
             }
-            else if (transcript.toLowerCase().trim() === "pause song") {
-                pauseMusic();
-            }
+
             else if (transcript.toLowerCase().trim().startsWith("play song")) {
                 const songName = transcript.toLowerCase().trim().replace("play song", "").trim();
                 playSongWithVoiceCommand(songName);
@@ -71,21 +69,13 @@ if (SpeechRecognition) {
                 const playButton = songList[i].querySelector('.songslist_play img');
                 if (playButton) {
                     playButton.click();
-                    console.log('Play button clicked!');
+                    console.log('Music Played on Command!');
                     return; // Exit the function once the song is played
                 }
             }
         }
         console.log('Song not found.');
     }
-    function pauseMusic() {
-        const playPauseBtn = document.querySelector(".play-pause");
-        const isMusicPlay = playPauseBtn.parentElement.classList.contains("paused");
-        if (isMusicPlay) {
-            playPauseBtn.click();
-        }
-    }
-
 
 
     function toggleRecognition() {

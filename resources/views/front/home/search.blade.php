@@ -34,8 +34,9 @@
                                                         <div class="songslist_number">
                                                             <h4 class="songslist_sn">{{$music->id}}</h4>
                                                             <span class="songslist_play">
-                                                                <img src="{{asset('/')}}front/assets/images/svg/play_songlist.svg" alt="Play" class="img-fluid" onclick="playSong('{{asset($music->audio_file)}}', '{{$music->name}}', '{{$music->singer_name}}', '{{asset($music->image_file)}}')"/>
-                                                            </span>
+    <img src="{{asset('/')}}front/assets/images/svg/play_songlist.svg" alt="Play" class="img-fluid play-icon" onclick="playSong('{{asset($music->audio_file)}}', '{{$music->name}}', '{{$music->singer_name}}', '{{asset($music->image_file)}}')"/>
+</span>
+
                                                         </div>
                                                         <div class="songslist_details">
                                                             <div class="songslist_thumb">

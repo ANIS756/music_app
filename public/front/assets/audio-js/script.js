@@ -21,10 +21,8 @@ function pauseMusic() {
     isMusicPaused = true;
     wrapper.classList.remove("paused");
     playPauseBtn.querySelector("i").innerText = "play_arrow";
-    playPauseBtn.click(); // Trigger the click event to pause the music
     mainAudio.pause();
 }
-
 
 playPauseBtn.addEventListener("click", () => {
     const isMusicPlay = wrapper.classList.contains("paused");

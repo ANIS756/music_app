@@ -6,12 +6,12 @@
                 <div class="jp-type-playlist">
                     <div class="jp-gui jp-interface flex-wrap">
                         <div class="wrapper">
-                            <div class="img-area">
-                                <img id="song-image" src="" height="100px" width="300px" alt="">
+                            <div class="img-area" >
+                                <img id="song-image" src="{{asset('/')}}front/assets/images/music/01.jpg" height="100px" width="90%" style="margin-left: 30px" alt="">
                             </div>
                             <div class="song-details">
-                                <p class="name" id="song-name"></p>
-                                <p class="artist" id="song-artist"></p>
+                                <p class="name" id="song-name" style="color: white">Song Name Here!</p>
+                                <p class="artist" id="song-artist" style="color: white">Artist Name!</p>
                             </div>
                             <div class="progress-area">
                                 <div class="progress-bar">
@@ -44,10 +44,15 @@
                                     <!-- Existing music list items -->
                                 </ul>
                             </div>
+                            <div>
+                                <button id="speech-button" hidden>Toggle Speech</button>
+                            </div>
 
                         </div>
                     </div>
                 </div>
+
+
 
                 <!----end Player---->
     <!--main div-->
